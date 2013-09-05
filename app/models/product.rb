@@ -12,4 +12,9 @@ class Product < ActiveRecord::Base
 
 #  validates_length_of :title, :minimum => 10, :too_short => "jojo"
   validates :title, :length => {:minimum => 10, :message => I18n.translate('errors.messages.too_short')}
+
+  def self.latest
+    Product.order(:updated_at).last
+  end
+
 end

@@ -54,4 +54,22 @@ price: 19.95
 
     assert_redirected_to products_path
   end
+
+
+  test "every product has to have 3 actions" do 
+    get :index
+    assert_select '.list_actions' do |elements|
+      elements.each do |element|
+        assert_select element, "a", 3
+      end
+    end
+  end
+
+  test "link hrefs should not be empty for actions" do 
+      get :index
+      assert_select "td.list_actions a" do
+        assert_select "[href=?]", /.+/  # Not empty
+      end
+  end  
+
 end
