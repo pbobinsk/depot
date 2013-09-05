@@ -3,4 +3,7 @@
 
 en:
   hello: "Hello world"
-  errors_messages_taken: "has already been taken"
+  errors:
+    messages:
+      taken: "has already been taken"
+      too_short: "za krotki tytul"
