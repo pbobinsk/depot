@@ -3,3 +3,4 @@
 
 en:
   hello: "Hello world"
+  errors_messages_taken: "has already been taken"
