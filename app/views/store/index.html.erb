@@ -11,7 +11,9 @@
     <h3><%= product.title %></h3>
     <%= sanitize(product.description) %>
     <div class="price_line">
-      <span class="price"><%= product.price %></span>
+<!-- it was     <span class="price"><%= product.price %></span> -->
+<!-- <span class="price"><%= sprintf("%0.02f PLN", product.price) %></span> better but ...    -->
+      <span class="price"><%= number_to_currency(product.price, :format => "%n %u", :unit => "PLN", :separator => ",", :delimiter => ".") %></span>
     </div>
   </div>
 <% end %>
