@@ -1,5 +1,7 @@
 class LineItemsController < ApplicationController
 
+#only for git play
+
   include CurrentCart 
   before_action :set_cart, only: [:create]
   
