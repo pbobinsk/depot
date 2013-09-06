@@ -7,7 +7,6 @@ en:
     messages:
       taken: "has already been taken"
       too_short: "za krotki tytul"
-en:
   time:
     formats:
       short: "%F %T :-)"
