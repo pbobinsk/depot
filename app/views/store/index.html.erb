@@ -16,7 +16,8 @@
 <!-- it was     <span class="price"><%= product.price %></span> -->
 <!-- <span class="price"><%= sprintf("%0.02f PLN", product.price) %></span> better but ...    -->
 <!-- <span class="price"><%= number_to_currency(product.price, :format => "%n %u", :unit => "PLN", :separator => ",", :delimiter => ".") %></span> and finally with locale -->
-<span class="price"><%= number_to_currency(product.price) %></span>
+      <span class="price"><%= number_to_currency(product.price) %></span>
+      <%= button_to 'Add to Cart', line_items_path(product_id: product) %>
     </div>
   </div>
 <% end %>
