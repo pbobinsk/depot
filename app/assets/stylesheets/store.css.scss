@@ -46,6 +46,16 @@
       font-weight: bold;
       margin-right: 3em;
     }
+
+	form, div { 
+		display: inline;
+	}
+	
+	.image_link {
+		border:2px solid green;
+		
+	}
+  
   }
 }
 /* END_HIGHLIGHT */
