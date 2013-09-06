@@ -3,8 +3,9 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 
+
+<%= @count_message %>
 <h1>Your Pragmatic Catalog</h1>
-<h3>visited: <%= increment_count %> times</h3>
 
 <% cache ['store', Product.latest] do %> 
   <% @products.each do |product| %>
