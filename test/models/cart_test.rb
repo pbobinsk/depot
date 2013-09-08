@@ -25,5 +25,11 @@ class CartTest < ActiveSupport::TestCase
     assert_equal 2, @cart.line_items[0].quantity
   end 
 
+  test "add product and copy price to line_item" do
+    @cart.add_product(@book_one.id).save!
+    assert_equal @book_one.price, @cart.total_price
+    assert_equal @book_one.price, @cart.line_items[0].price
+  end 
+
 
 end
