@@ -1,4 +1,8 @@
 class StoreController < ApplicationController
+
+include CurrentCart 
+before_action :set_cart
+
 include StoreHelper
   def index
     @count = increment_count
