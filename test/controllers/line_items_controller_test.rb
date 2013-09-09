@@ -17,11 +17,21 @@ class LineItemsControllerTest < ActionController::TestCase
   end
 
   test "should create line_item" do
-    assert_difference('LineItem.count') do
+    assert_difference('LineItem.count', 1) do
       post :create, product_id: products(:ruby).id
     end
-    assert_redirected_to cart_path(assigns(:line_item).cart)
+    assert_redirected_to store_path
   end
+
+  test "should create line_item twice" do
+    assert_difference('LineItem.count', 1) do
+      post :create, product_id: products(:ruby).id
+      post :create, product_id: products(:ruby).id
+    end
+    assert_redirected_to store_path
+  end
+
+
 
   test "should show line_item" do
     get :show, id: @line_item
