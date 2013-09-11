@@ -55,41 +55,15 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
     assert_equal "dave@example.com", order.email
     assert_equal "Check",            order.pay_type
 
-    get "/orders/#{order.id}/edit"
-    assert_response :success
-    assert_template "edit"
-    
-    put_via_redirect "/orders/#{order.id}",
-                      order: { name:     "Dave Thomas",
-                               address:  "123 The Street",
-                               email:    "dave@example.com",
-                               pay_type: "Check" ,
-                               ship_date: "2013-10-10"}
-    assert_response :success
-    
-    orders = Order.all
-    assert_equal 1, orders.size
-    order = orders[0]
-    
-    assert_equal "Dave Thomas",      order.name
-    assert_equal "123 The Street",   order.address
-    assert_equal "dave@example.com", order.email
-    assert_equal "Check",            order.pay_type
-    assert_equal "2013-10-10",       order.ship_date.to_date.to_s
-
 
     assert_equal 1, order.line_items.size
     line_item = order.line_items[0]
     assert_equal ruby_book, line_item.product
 
-    mail = ActionMailer::Base.deliveries[ActionMailer::Base.deliveries.size - 2]
+    mail = ActionMailer::Base.deliveries.last
     assert_equal ["dave@example.com"], mail.to
     assert_equal 'Piotr B <rbobinsk@gmail.com>', mail[:from].value
     assert_equal "Pragmatic Store Order Confirmation", mail.subject
 
-    mail = ActionMailer::Base.deliveries.last
-    assert_equal ["dave@example.com"], mail.to
-    assert_equal 'Piotr B <rbobinsk@gmail.com>', mail[:from].value
-    assert_equal "Pragmatic Store Order Shipped", mail.subject
   end
 end

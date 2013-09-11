@@ -57,4 +57,18 @@ class OrdersControllerTest < ActionController::TestCase
 
     assert_redirected_to orders_path
   end
+
+
+  test "should update ship date" do 
+
+    patch :update, id: @order, order: { address: @order.address, email: @order.email, name: @order.name, pay_type: @order.pay_type, ship_date: "2013-10-10" }
+    assert_redirected_to order_path(assigns(:order))
+
+    mail = ActionMailer::Base.deliveries.last
+    assert_equal ["dave@example.org"], mail.to
+    assert_equal 'Piotr B <rbobinsk@gmail.com>', mail[:from].value
+    assert_equal "Pragmatic Store Order Shipped", mail.subject
+
+  end
+
 end
