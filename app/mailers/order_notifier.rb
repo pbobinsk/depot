@@ -22,4 +22,11 @@ class OrderNotifier < ActionMailer::Base
 
     mail to: order.email, subject: 'Pragmatic Store Order Shipped'
   end
+
+
+  def error_occured(error)
+    @error = error
+    mail :to => "pbobinsk@gmail.com", :subject => 'Depot App Error Incident'  ## replace your email id to receive mails
+  end
+
 end
