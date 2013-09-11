@@ -1,6 +1,8 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
-  rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
+  rescue_from ActiveRecord::RecordNotFound do |e|
+    invalid_cart e
+  end
 
   # GET /carts
   # GET /carts.json
@@ -76,8 +78,9 @@ class CartsController < ApplicationController
       params[:cart]
     end
 
-    def invalid_cart
+    def invalid_cart(e)
       logger.error "Attempt to access invalid cart #{params[:id]}"
+      OrderNotifier.error_occured(e).deliver   
       redirect_to store_url, notice: 'Invalid cart'
     end
 
