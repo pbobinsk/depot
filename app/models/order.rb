@@ -13,4 +13,13 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def total_price
+    @total = 0;
+    line_items.each do |item|
+      @total += item.total_price
+    end
+    return @total
+  end
+
+
 end
