@@ -1,5 +1,7 @@
 class LineItemsController < ApplicationController
 
+skip_before_action :authorize, only: :create
+
 #only for git play
 
   include CurrentCart 

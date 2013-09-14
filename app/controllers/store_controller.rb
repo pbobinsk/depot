@@ -1,9 +1,11 @@
 class StoreController < ApplicationController
 
-include CurrentCart 
-before_action :set_cart
+  skip_before_action :authorize
 
-include StoreHelper
+  include CurrentCart 
+  before_action :set_cart
+
+  include StoreHelper
   def index
     @count = increment_count
     @count_message = "You've accessed this page #{view_context.pluralize(@count , 'time')}" if session[:counter] > 5
